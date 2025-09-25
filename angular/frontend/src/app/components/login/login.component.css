@@ -1,0 +1,28 @@
+/* Estilos del login */
+.login-container {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.login-card {
+  border: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #495057;
+}
+
+.btn-login {
+  background: linear-gradient(45deg, #007bff, #0056b3);
+  border: none;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.btn-login:hover {
+  background: linear-gradient(45deg, #0056b3, #004085);
+}

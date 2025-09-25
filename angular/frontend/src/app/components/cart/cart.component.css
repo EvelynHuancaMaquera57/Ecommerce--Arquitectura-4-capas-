@@ -1,0 +1,37 @@
+/* Estilos del carrito */
+.cart-table {
+  margin-top: 20px;
+}
+
+.cart-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-total {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.empty-cart-message {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+}

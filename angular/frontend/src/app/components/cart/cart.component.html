@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <h2>Carrito de Compras</h2>
+  
+  <div *ngIf="cartService.getCartItems().length === 0" class="alert alert-info">
+    Tu carrito está vacío
+  </div>
+
+  <div *ngIf="cartService.getCartItems().length > 0">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartService.getCartItems()">
+            <td>
+              <img [src]="item.product?.imageUrl || 'assets/default-product.png'" 
+                   [alt]="item.product?.name" width="50" class="me-2">
+              {{ item.product?.name }}
+            </td>
+            <td>${{ item.product?.price }}</td>
+            <td>{{ item.cantidad }}</td>
+            <td>${{ (item.product?.price || 0) * item.cantidad }}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="removeItem(item.id)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Total: ${{ cartService.getTotal() }}</h4>
+      </div>
+      <div class="col-md-6 text-end">
+        <button class="btn btn-success btn-lg" (click)="checkout()">
+          Finalizar Compra
+        </button>
+        <button class="btn btn-outline-secondary btn-lg ms-2" 
+                (click)="cartService.clearCart()">
+          Vaciar Carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

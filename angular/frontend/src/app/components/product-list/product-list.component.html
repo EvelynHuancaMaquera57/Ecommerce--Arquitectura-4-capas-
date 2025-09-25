@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <h2>Productos</h2>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Buscar productos..." 
+               [(ngModel)]="searchQuery" (input)="searchProducts()">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchProducts()">
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let product of filteredProducts">
+      <div class="card h-100">
+        <img [src]="product.imageUrl || 'assets/default-product.png'" 
+             class="card-img-top" [alt]="product.name" style="height: 200px; object-fit: cover;">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text flex-grow-1">{{ product.description | slice:0:100 }}...</p>
+          <p class="card-text"><strong>Precio: ${{ product.price }}</strong></p>
+          <p class="card-text">Stock: {{ product.stock }}</p>
+          
+          <div class="mt-auto">
+            <div class="input-group mb-2" *ngIf="product.stock > 0">
+              <input type="number" class="form-control" 
+                     #quantityInput
+                     value="1" min="1" [max]="product.stock"
+                     style="max-width: 80px;">
+              <button class="btn btn-primary" 
+                      (click)="addToCartWithQuantity(product, quantityInput.valueAsNumber || 1)"
+                      [disabled]="product.stock === 0">
+                Agregar
+              </button>
+            </div>
+            
+            <button class="btn btn-outline-primary w-100" 
+                    (click)="addToCart(product)"
+                    [disabled]="product.stock === 0">
+              {{ product.stock === 0 ? 'Sin Stock' : 'Agregar 1 al Carrito' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

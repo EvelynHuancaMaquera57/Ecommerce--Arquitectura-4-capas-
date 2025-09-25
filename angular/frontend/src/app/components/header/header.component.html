@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Mi Ecommerce</a>
+    
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" routerLink="/products" routerLinkActive="active">Productos</a>
+      <a class="nav-link" routerLink="/cart" routerLinkActive="active">
+        Carrito <span class="badge bg-primary">{{ cartItemCount }}</span>
+      </a>
+      
+      <ng-container *ngIf="!isLoggedIn; else userMenu">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+        <a class="nav-link" routerLink="/register" routerLinkActive="active">Registro</a>
+      </ng-container>
+      
+      <ng-template #userMenu>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            {{ authService.getCurrentUser()?.firstName }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</nav>
