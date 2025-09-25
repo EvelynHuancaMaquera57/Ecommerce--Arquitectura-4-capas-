@@ -1,0 +1,11 @@
+# Node / Angular
+frontend/node_modules/
+frontend/dist/
+
+# Java / Spring Boot
+backend/target/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
